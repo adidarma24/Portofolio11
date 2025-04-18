@@ -3,17 +3,16 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Product\ProdukControler;
 use App\Http\Controllers\ExampleController;
+use App\Http\Controllers\HomeController;
 
-Route::get('/', function () {
-    return view('Home');
-});
 
-Route::get('/product', function () {
-    return view('product.product');
+Route::get('/', [HomeController::class, 'index']);
+
+Route::get('/products', [ProdukControler::class, 'showProduct']);
     // echo ("Ini Halaman Produk");
-});
+
 Route::get('/cart', function () {
-    echo ("Ini Halaman Cart");
+    return view('product.cart');
 });
 Route::get('/checkout', function () {
     echo ("Ini Halaman Checkout");
@@ -24,4 +23,3 @@ Route::get('/hello/{name}', function ($name) {
 
 Route::resource('example', ExampleController::class);
 
-Route::get('/product', [ProdukControler::class, 'showProduct']);
